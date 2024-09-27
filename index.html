@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hautanauris</title>
+    <link rel="icon" href="favicon.ico">
+        <style>
+        body, html {
+            margin: 0;
+            height: 100%;
+        }
+
+        body { 
+            cursor: url('cursor.cur'), auto;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 700px 1fr;
+            height: 100vh;
+        }
+
+        .vasen {
+            display: grid;
+            grid-template-rows: 30% 70%;
+            height: 100vh;
+        }
+
+        .yläosa {
+            background-color: rgb(74, 75, 74);
+            display: flex;
+            justify-content: center;
+            align-items: top;
+            box-sizing: border-box;
+        }
+
+        img {
+        width: 700px; 
+        height: auto;
+      } 
+
+        .yläosa h2 {
+            font-family: 'hevi';
+            font-size: 7vw;
+            text-align: center;
+            transform: scaleY(1.5);
+        }
+
+        .alaosa {
+            position: relative;
+            overflow-y: auto;
+            background-color: rgb(32, 32, 32);
+            padding-inline: 23px;
+        }
+      
+        .p1 {
+            color: white;
+            font-family: 'hautanauris';
+            font-size: 20px;
+            margin-right: 200px; 
+            margin-bottom: 0px;
+        }
+
+        .p2 {
+            color: white;
+            font-family: 'hautanauris';
+            font-size: 20px;
+            text-align: right;  /* Teksti kohdistuu oikealle */
+            margin-bottom: 150px;
+            margin-left: 250px;
+            margin-top: 150px;
+        }
+
+        .p3 {
+            color: white;
+            font-family: 'hautanauris';
+            font-size: 20px;
+            text-align: left;  /* Teksti kohdistuu oikealle */
+            margin-bottom: 150px;
+            margin-left: 10px;
+            margin-right: 70px;
+            margin-top: 100px;
+        }
+
+        .alaosa img.img1 {
+            float: right; /* Kuva siirtyy oikeaan yläkulmaan */
+            width: 170px;
+            height: auto;
+            margin-left: 20px; /* Etäisyys tekstistä vasemmalle */
+            margin-bottom: 10px; /* Etäisyys kuvan alareunasta */
+            border:3px solid #7cc1f6
+        }
+
+        .alaosa img.img2 {
+            float: left; /* Kuva siirtyy oikeaan yläkulmaan */
+            width: 150px;
+            height: auto;
+            margin-right: 5px; /* Etäisyys tekstistä vasemmalle */
+            margin-bottom: 10px; /* Etäisyys kuvan alareunasta */
+            margin-top: 70px;
+        }
+
+        .alaosa img.img3 {
+            float: center; /* Kuva siirtyy oikeaan yläkulmaan */
+            width: 300px;
+            height: auto;
+            margin-left: 70px; /* Etäisyys tekstistä vasemmalle */
+            margin-bottom: 10px; /* Etäisyys kuvan alareunasta */
+            border:3px solid #7cc1f6
+        }
+
+        .uusi-fontti {
+           font-family: 'mono';
+           font-size: 16px;
+           line-height: 2.9;
+        }        
+
+        .linkki1 {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f5a9d5;
+            filter: blur(3px); 
+            background-color: transparent;
+            border-radius: 50%;
+            float: left;
+            cursor: url('cursor.cur'), auto;
+            z-index: 1;
+            margin-left: 20px;
+            margin-top: 30px;
+        }
+
+        .linkki2 {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f5a9d5;
+            filter: blur(3px); 
+            background-color: transparent;
+            border-radius: 50%;
+            float: right;
+            cursor: url('cursor.cur'), auto;
+            z-index: 1;
+            margin-right: 70px;
+            margin-top: -80px;
+        }
+
+        .linkki3 {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f5a9d5;
+            filter: blur(3px); 
+            background-color: transparent;
+            border-radius: 50%;
+            float: right;
+            cursor: url('cursor.cur'), auto;
+            z-index: 1;
+            margin-right: 70px;
+            margin-top: 0px;
+            margin-bottom: 50px; 
+        }
+
+        .linkki1:hover {
+            background-color: rgba(96, 96, 96, 0.438);
+        }
+
+        .linkki2:hover {
+            background-color: rgba(96, 96, 96, 0.438);
+        }
+
+        .linkki3:hover {
+            background-color: rgba(96, 96, 96, 0.438);
+        }
+
+        .oikea {
+            background: radial-gradient(circle, #f5a9d5, #4f3809, #000000);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.5s ease;
+            overflow-y: scroll;
+            height: 100vh;
+            position: relative;
+        }
+
+        .oikea img {
+            position: absolute;
+            width: 100vh;
+            height: 100vh;
+            z-index: 0; 
+        }
+        
+        .hauta {
+            display: inline-block;
+            width: 200px;
+            height: 250px;
+            background: transparent; 
+            border-radius: 110px 110px 7px 7px; 
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 200;
+        }
+
+        .hauta:hover {
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); 
+            cursor: url('cursor.cur'), auto;
+
+        }
+
+        .hauta::after {
+            content: "RIP";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: anglican;
+            color: rgb(38, 38, 38);
+            font-size: 50px;
+            text-shadow: 1px 1px #FFF4D0;
+        }
+
+        .pallo {
+            position: absolute;
+            width: 20px; 
+            height: 20px;
+            background-color: #7cc1f6;
+            clip-path: polygon(50% 0%, 61% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 2% 35%); 
+            animation: pirskahtelu 1s ease-out forwards;
+            z-index: 10;
+        }
+
+        @keyframes pirskahtelu {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(calc(50px - 100vw * var(--random-x)), calc(50px - 100vh * var(--random-y))) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .k-grid {
+            display: none; 
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            justify-items: center;
+            align-items: center;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            padding:10px;
+        }
+
+        .k-grid a {
+            font-family: 'hautanauris';
+            font-size: 70px;
+            color: black;
+            text-decoration: none;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border: 2px solid black;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            z-index: 10; 
+            position: relative; 
+            cursor: url('cursor.cur'), auto;
+
+        }       
+
+        .k-grid a:hover {
+            color: rgb(246, 14, 14);
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.8); 
+        }
+
+
+        @font-face {
+            font-family: 'hevi';
+            src: url('hevi.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'hautanauris';
+            src: url('hautanauris-font.otf') format('opentype');
+        }
+
+        @font-face {
+            font-family: 'anglican';
+            src: url('AnglicanText.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'mono';
+            src: url('IBMPlexMono-Light.ttf') format('truetype');
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="vasen">
+        <div class="yläosa">
+            <img src="logo_abstrakti.png" alt="Abstrakti logo" />
+        </div>
+        <div class="alaosa">
+            <div class="teksti" id="tekstialue">
+                <img class="img1" src="musta-nauris2.png" alt="Kuva värjätystä nauriista" />                <p class="p1">
+                Hautanauris oli suomalainen vanhanajan herkku aikana, jolloin karamelleista ja muusta makeasta ei osattu edes haaveilla. 
+                </p1>
+
+                <div class="linkki1" id="klikattavaLinkki"></div>
+
+                <img class="img2" src="nauris-oranssi.png" alt="Kuva värjätystä nauriista" />
+
+                <p class="p2">
+                    Vuorokauden mittaisen ainutlaatuisen valmistuksen aikana nauriit kypsyivät mystisissä naurishaudoissa tulikuumien kivien loimussa, jonka ansiosta niistä kypsyi suussasulavan makeita. Kun hartaasti odotettu naurishaudan avaaminen vihdoin koitti, käsin kosketeltava jännitys laskeutui koko pitäjän ylle. Olihan sen avaus usein suurjuhla, jota vietettiin koko kylän voimin. 
+                </p> 
+
+                <div class="linkki2" id="klikattavaLinkki2"></div>
+                <img class="img3" src="nauriit.png" alt="Kuva kolmesta nauriista" />                
+                
+                <p class="p3">     
+                Mutta kuitenkin, hiljalleen ja vääjäämättä, tuli peruna. 1800-luvun lopulla se syrjäytti kaiken tieltään, ja hautanauriit, nuo herkulliset aarteet, vaipuivat unholaan. Niiden valmistustapa, joka oli kulkenut sukupolvelta toiselle, alkoi jäädä historian jalkoihin. Jäljelle jäivät vain hylätyt hautakaivannot ja unohduksen katkeruudesta käpristyneet nauriit, jotka ajan hiekka hiljaa nielaisi
+                <p class="p3">  
+                syvemmälle 
+                </p>
+                <p class="p3">  
+                ja 
+                </p>
+                <p class="p3">  
+                syvemmälle 
+                </p>
+                <p class="p3">  
+                maan uumeniin.
+            </p>
+                <div class="linkki3" id="klikattavaLinkki3"></div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="oikea" id="gradient">
+        <img src="taustaborder.png" alt="Tausta">
+        <a href="#" class="hauta" id="hautaLinkki" onclick="startAnimations(event)"></a>
+        
+        <div class="k-grid" id="kGrid">
+            <a href="#" onclick="playAudio('audio1')">K</a>
+            <a href="#" onclick="playAudio('audio2')">J</a>
+            <a href="#" onclick="playAudio('audio3')">L</a>
+            <a href="#" onclick="playAudio('audio4')">A</a>
+            <a href="#" onclick="playAudio('audio5')">Y</a>
+            <a href="#" onclick="playAudio('audio6')">I</a>
+            <a href="#" onclick="playAudio('audio7')">Ä</a>
+            <a href="#" onclick="playAudio('audio8')">Ö</a>
+            <a href="#" onclick="playAudio('audio9')">U</a>
+        </div>
+
+        <audio id="audio1" src="/audio/nauris1.mp3"></audio>
+        <audio id="audio2" src="/audio/nauris2.mp3"></audio>
+        <audio id="audio3" src="/audio/nauris3.mp3"></audio>
+        <audio id="audio4" src="/audio/nauris4.mp3"></audio>
+        <audio id="audio5" src="/audio/nauris5.mp3"></audio>
+        <audio id="audio6" src="/audio/nauris6.mp3"></audio>
+        <audio id="audio7" src="/audio/nauris7.mp3"></audio>
+        <audio id="audio8" src="/audio/nauris8.mp3"></audio>
+        <audio id="audio9" src="/audio/nauris9.mp3"></audio>
+</div>
+
+<script>
+let clickCount = 0;
+
+klikattavaLinkki.addEventListener("click", function(event) {
+    event.preventDefault(); 
+    const p1Elements = document.querySelectorAll(".p1"); // Valitse kaikki p1-luokan elementit
+    p1Elements.forEach(function(element) {
+        element.classList.toggle("uusi-fontti");
+    });
+});
+
+klikattavaLinkki2.addEventListener("click", function(event) {
+    event.preventDefault(); 
+    const p2Elements = document.querySelectorAll(".p2"); // Valitse kaikki p1-luokan elementit
+    p2Elements.forEach(function(element) {
+        element.classList.toggle("uusi-fontti");
+    });
+});
+
+klikattavaLinkki3.addEventListener("click", function(event) {
+    event.preventDefault(); 
+    const p3Elements = document.querySelectorAll(".p3"); // Valitse kaikki p1-luokan elementit
+    p3Elements.forEach(function(element) {
+        element.classList.toggle("uusi-fontti");
+    });
+});
+
+function startAnimations(event) {
+    console.log("Hautalinkkiä klikattu!"); // Debugging
+    event.preventDefault();
+    clickCount++;
+
+    pirskahtelu();
+
+    changeGradient();
+
+    if (clickCount >= 8) {
+        const hautaLinkki = document.getElementById('hautaLinkki');
+        const kGrid = document.getElementById('kGrid');
+        
+        hautaLinkki.style.display = 'none';  
+        kGrid.style.display = 'grid';       
+    }
+}
+
+function pirskahtelu() {
+    const container = document.querySelector('.oikea');
+    const centerX = container.offsetWidth / 2;
+    const centerY = container.offsetHeight / 2;
+
+    for (let i = 0; i < 20; i++) {
+        const pallo = document.createElement('div');
+        pallo.classList.add('pallo');
+        pallo.style.setProperty('--random-x', Math.random());
+        pallo.style.setProperty('--random-y', Math.random());
+        pallo.style.left = `${centerX}px`;  
+        pallo.style.top = `${centerY}px`;   
+        container.appendChild(pallo);
+
+        setTimeout(() => {
+            pallo.remove();
+        }, 1000);
+    }
+}
+
+let currentLightness = 70; // Aloitamme hieman vaaleammasta arvosta
+
+function changeGradient() {
+    currentLightness = Math.max(currentLightness - 10, 0);  // Tummennamme asteittain, minimivalo on 0%
+
+    document.getElementById('gradient').style.background = `
+        radial-gradient(circle, 
+        hsl(340, 70%, ${currentLightness}%), /* Vaaleanpunainen */
+        hsl(25, 60%, ${currentLightness - 20}%), /* Tumma ruskea */
+        hsl(0, 0%, ${currentLightness - 50}%))`; /* Musta asteittain */ 
+}
+
+function playAudio(audioId) {
+    const audioElement = document.getElementById(audioId);
+    if (audioElement) {
+        audioElement.play();
+    } else {
+        console.log("Audio elementtiä ei löytynyt: " + audioId);
+    }
+}
+
+
+</script>
+
+</body>
+</html>
